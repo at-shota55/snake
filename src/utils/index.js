@@ -24,5 +24,22 @@ export const initFields = (fieldSize, snake) => {
     const food = getFoodPosition(fieldSize, [snake]);
     fields[food.y][food.x] = 'food'
 
-    return fields
+    return fields // 作成した配列を返却
 }
+
+//xかyの値がマイナスでなくフィールドサイズより小さい座標に収まっていない場合はぶつかっていると判断してtrueを返す関数isCollision関数を定義している
+export const isCollision = (fieldSize, position) => {
+    if (position.y < 0 || position.x < 0) { 
+        return true;
+    }
+
+if (position.y > fieldSize - 1 || position.x > fieldSize - 1) {
+    return true;
+    }
+
+    return false;
+};
+
+export const isEatingMyself = (fields, position) => {
+    return fields[position.y][position.x] === 'snake'
+} 
